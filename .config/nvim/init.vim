@@ -18,8 +18,8 @@ set fileencodings=utf-8,usc-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 "-->启用鼠标
-"set mouse=a
-"set selection=exclusive
+set mouse=a
+set selection=exclusive
 "set selectmode=mouse.key
 "-->启用粘贴 避免插入模式下粘贴内容时出现缩进变形问题
 "set paste
@@ -39,6 +39,7 @@ set wildmenu
 call plug#begin()
 
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 "
@@ -54,7 +55,7 @@ call plug#end()
 "=              >>> 显示设置 <<<              =
 "==============================================
 "-->主题颜色
-"colorscheme gruvbox
+" colorscheme gruvbox
 "-->显示行号 == set nu
 set number
 "-->高亮当前行 == set cul
@@ -94,6 +95,7 @@ nmap <Leader>q :q<CR>
 nmap <Leader>W :wa<CR>
 nmap <Leader>WQ :q<CR>
 nmap <Leader>Q :q!<CR>
+nmap <Leader>s :wq<CR>
 "->窗口切换
 nmap <Leader>nw <C-W><C-W>
 nmap <Leader>hw <C-W>h
