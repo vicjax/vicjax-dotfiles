@@ -14,6 +14,9 @@
 "-->关闭vi的兼容模式 使用vim的新特性
 set nocompatible
 "-->设置中文不乱码
+"-->windows下激活python模块
+"let g:python3_host_prog='C:\Users\sword\scoop\shims\python3.exe'
+"let g:python_host_prog='C:\Users\sword\scoop\shims\python.exe'
 set fileencodings=utf-8,usc-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
@@ -38,17 +41,59 @@ set wildmenu
 "==============================================
 call plug#begin()
 
+"--> 按键映射插件
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'morhetz/gruvbox'
+"--> 主题 
+Plug 'morhetz/gruvbox'
+"--> 文件管理
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+"->defx支持插件
+Plug 'kristijanhusak/defx-git'
+Plug 'kristijanhusak/defx-icons'
 
 call plug#end()
 "
 "
 "
+"=====================================
+"              插件配置
+"-------------------------------------
+"--> Defx文件管理配置
+"-------------------------------------
+"call defx#custom#option('_',{
+"    \ 'winwidth': 30,
+"    \ 'split': 'vertical',
+"    \ 'direction': 'topleft',
+"    \ 'show_ignored_files': 0,
+"    \ 'buffer_name': '',
+"    \ 'toggle': 1,
+"    \ 'resume': 1
+"    \})
 "
-"--------------> 插件配置
-"
-"
+"-->打开文件树
+map <silent> ft :Defx<CR> 
+"-->键盘映射
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+    IndentLinesDisable
+    setl nospell
+    setl signcolumn=no
+    setl nonumber
+
+    "->Define mappings
+    nnoremap <silent><buffer><expr> <CR>
+		\ defx#is_directory() ?
+		\ defx#do_action('open_or_close_tree'):
+		\ defx#do_action('drop',)
+    nmap <>
+endfunction
 "
 "
 "==============================================
@@ -56,6 +101,9 @@ call plug#end()
 "==============================================
 "-->主题颜色
 " colorscheme gruvbox
+"-->设置背景透明
+highlight Normal guibg=NONE ctermbg=None
+highlight NonText guibg=NONE ctermbg=None
 "-->显示行号 == set nu
 set number
 "-->高亮当前行 == set cul
@@ -110,14 +158,18 @@ nmap <Leader><down> <C-W>+
 "->符号匹配设置
 nmap <Leader>M %
 "
-"
-"
-"
 "--> 输入设置
 "->括号输入格式
 inoremap {<CR> {<CR>}<Esc>O<Tab>
 inoremap (<CR> (<CR>)<Esc>O<Tab>
 inoremap [<CR> {<CR>}<Esc>O<Tab>
+"->系统剪贴板映射
+map <C-Y> "+y<CR>
+map <C-P> "+p<CR>
+"
+"
+"
+"
 "
 "
 "
