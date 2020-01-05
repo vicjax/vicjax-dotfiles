@@ -15,10 +15,13 @@
 set nocompatible
 "-->设置中文不乱码
 "-->windows下激活python模块
-if( has("win32") || has("win64") || has("win16"))
-   let g:python3_host_prog='C:\Users\sword\scoop\shims\python3.exe'
-   let g:python_host_prog='C:\Users\sword\scoop\shims\python.exe'
+if(has("win32")||has("win64")||has("win16"))
+    let g:python3_host_prog='C:\Users\sword\scoop\shims\python3.exe'
+    let g:python_host_prog='C:\Users\sword\scoop\shims\python.exe'
 endif
+"-->linux下激活python模块 安装pynvim支持后可以不用指定
+"let g:python3_host_prog='/usr/bin/python3'
+"let g:python_host_prog='/usr/bin/python'
 set fileencodings=utf-8,usc-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
@@ -59,6 +62,9 @@ endif
 "->defx支持插件
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
+"->co代码提示插件
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 call plug#end()
 "
@@ -69,34 +75,76 @@ call plug#end()
 "-------------------------------------
 "--> Defx文件管理配置
 "-------------------------------------
-"call defx#custom#option('_',{
-"    \ 'winwidth': 30,
-"    \ 'split': 'vertical',
-"    \ 'direction': 'topleft',
-"    \ 'show_ignored_files': 0,
-"    \ 'buffer_name': '',
-"    \ 'toggle': 1,
-"    \ 'resume': 1
-"    \})
-"
+call defx#custom#option('_',{
+    \ 'winwidth': 30,
+    \ 'split': 'vertical',
+    \ 'direction': 'topleft',
+    \ 'show_ignored_files': 0,
+    \ 'buffer_name': '',
+    \ 'toggle': 1,
+    \ 'resume': 1
+    \})
+
 "-->打开文件树
-map <silent> ft :Defx<CR> 
+map <silent><C-e> :Defx<CR>
 "-->键盘映射
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
-    IndentLinesDisable
+"    IndentLinesDisable
     setl nospell
     setl signcolumn=no
     setl nonumber
 
-    "->Define mappings
+    "->Define Key Mappings
     nnoremap <silent><buffer><expr> <CR>
-		\ defx#is_directory() ?
-		\ defx#do_action('open_or_close_tree'):
-		\ defx#do_action('drop',)
-    nmap <>
+	    \ defx#is_directory() ?
+    	    \ defx#do_action('open_or_close_tree') :
+    	    \ defx#do_action('drop',)
+    nmap <silent><buffer><expr> <2-LeftMouse>
+	    \ defx#is_directory() ?
+    	    \ defx#do_action('open_or_close_tree') :
+    	    \ defx#do_action('drop',)
+    nnoremap <silent><buffer><expr> s defx#do_action('drop', 'split')
+    nnoremap <silent><buffer><expr> v defx#do_action('drop', 'vsplit')
+    nnoremap <silent><buffer><expr> t defx#do_action('drop', 'tabe')
+    nnoremap <silent><buffer><expr> o defx#do_action('open_tree')
+    nnoremap <silent><buffer><expr> O defx#do_action('open_tree_recursive')
+    nnoremap <silent><buffer><expr> C defx#do_action('copy')
+    nnoremap <silent><buffer><expr> P defx#do_action('paste')
+    nnoremap <silent><buffer><expr> M defx#do_action('rename')
+    nnoremap <silent><buffer><expr> D defx#do_action('remove_trash')
+    nnoremap <silent><buffer><expr> A defx#do_action('new_multiple_files')
+    nnoremap <silent><buffer><expr> U defx#do_action('cd', ['..'])
+    nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select')
+    nnoremap <silent><buffer><expr> R defx#do_action('redraw')
 endfunction
-"
+" Defx git图标配置
+let g:defx_git#indicators = {
+  \ 'Modified'  : '✹',
+  \ 'Staged'    : '✚',
+  \ 'Untracked' : '✭',
+  \ 'Renamed'   : '➜',
+  \ 'Unmerged'  : '═',
+  \ 'Ignored'   : '☒',
+  \ 'Deleted'   : '✖',
+  \ 'Unknown'   : '?'
+  \ }
+let g:defx_git#column_length = 0
+hi def link Defx_filename_directory NERDTreeDirSlash
+hi def link Defx_git_Modified Special
+hi def link Defx_git_Staged Function
+hi def link Defx_git_Renamed Title
+hi def link Defx_git_Unmerged Label
+hi def link Defx_git_Untracked Tag
+hi def link Defx_git_Ignored Comment
+
+" Defx icons
+" Requires nerd-font, install at https://github.com/ryanoasis/nerd-fonts or
+" brew cask install font-hack-nerd-font
+" Then set non-ascii font to Driod sans mono for powerline in iTerm2
+" disbale syntax highlighting to prevent performence issue
+let g:defx_icons_enable_syntax_highlight = 1
 "
 "==============================================
 "=              >>> 显示设置 <<<              =
