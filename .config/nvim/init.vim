@@ -15,8 +15,10 @@
 set nocompatible
 "-->设置中文不乱码
 "-->windows下激活python模块
-"let g:python3_host_prog='C:\Users\sword\scoop\shims\python3.exe'
-"let g:python_host_prog='C:\Users\sword\scoop\shims\python.exe'
+if( has("win32") || has("win64") || has("win16"))
+   let g:python3_host_prog='C:\Users\sword\scoop\shims\python3.exe'
+   let g:python_host_prog='C:\Users\sword\scoop\shims\python.exe'
+endif
 set fileencodings=utf-8,usc-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
