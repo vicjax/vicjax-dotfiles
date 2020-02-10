@@ -6,7 +6,8 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/vicjax/.oh-my-zsh"
+export ZSH="/Users/vicjax/.oh-my-zsh"
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -80,7 +81,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
+# source $HOME/.bash_profile
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -112,3 +113,4 @@ alias lal='ls -al'
 alias vim='nvim'
 alias vi='nvim'
 alias rg='ranger'
+alias sbs='source ~/.bash_profile'
