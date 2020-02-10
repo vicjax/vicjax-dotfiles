@@ -78,10 +78,10 @@ call plug#end()
 call defx#custom#option('_',{
     \ 'winwidth': 30,
     \ 'split': 'vertical',
-    \ 'direction': 'topleft',
+    \ 'direction': 'botright',
     \ 'show_ignored_files': 0,
     \ 'buffer_name': '',
-    \ 'toggle': 1,
+    \ 'toggle': 1, 
     \ 'resume': 1
     \})
 
@@ -116,7 +116,7 @@ function! s:defx_my_settings() abort
     nnoremap <silent><buffer><expr> A defx#do_action('new_multiple_files')
     nnoremap <silent><buffer><expr> U defx#do_action('cd', ['..'])
     nnoremap <silent><buffer><expr> . defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select')
+    nnoremap <silent><buffer><expr> + defx#do_action('toggle_select')
     nnoremap <silent><buffer><expr> R defx#do_action('redraw')
 endfunction
 " Defx git图标配置
