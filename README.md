@@ -1,7 +1,6 @@
+# vicjax.dotfile
 
-> vicjax.dotfile--Auto configure your terminal for linux 
-
-This is a dotfile base on linux terminal.
+This is a dotfile which config your terminal.
 
 A dotfile like `.vimrc`, `.bashrc`...which is a custom configuration file for a application.
 
@@ -9,18 +8,37 @@ Sometimes we need config our own enviroment and applications even our systems,bu
 
 Now you can use this to create,copy,restore your configuration quickly and efficiently.
 
-# Getting Started
+## Getting Started
+
+You need download or clone this repository first:
+
+- using git by `git clone https://github.com/vicjax/vicjax-dotfiles.git`;
+- or download .zip by click https://github.com/vicjax/vicjax-dotfiles/archive/master.zip and unzip it.
 
 ## Prerequisites
 
-> If you only need dotfiles and already installed your applications please ignore this section.
+Before you config your softwares using `.dotfiles`, you should make sure you have installed that:
 
-> If you do not installed apps,you can using script `appInstall.sh` to install apps which you need.
-- You need install some tools like `curl` or `wget` and `git`.
-- You need install some applications you need config by using your system package manager.
+- the necessary tools `curl` or `wget` and `git`;
+- the softwares you want to config like `vim` `neovim` ...
 
-### Using script to install your app
+Also you can use the script `.appinstall.sh` to check and install above software you just need execute in terminal:
 
- 
+```sh
+cd /the/path/to/vicjax-dotfiles/
+./appinstall.sh
+```
+
+and follow the prompts to continue.
+> Note: This script can work if you use one of following package manager:
+> - apt or apt-get
+> - yum
+> - pacman
 ## Using dotfiles
 
+Make sure you prepare to config your apps,you just need excute in terminal:
+
+```sh
+cd /the/path/to/vicjax-dotfiles/
+./autoconfig.sh
+```
