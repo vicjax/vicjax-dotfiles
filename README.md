@@ -1,4 +1,4 @@
-# vicjax.dotfile
+# vicjax.dotfile :smile::smile::smile:
 
 This is a dotfile which config your terminal.
 
@@ -8,14 +8,14 @@ Sometimes we need config our own enviroment and applications even our systems,bu
 
 Now you can use this to create,copy,restore your configuration quickly and efficiently.
 
-## Getting Started
+## Getting Started :hand:
 
 You need download or clone this repository first:
 
 - using git by `git clone https://github.com/vicjax/vicjax-dotfiles.git`;
 - or download .zip by click https://github.com/vicjax/vicjax-dotfiles/archive/master.zip and unzip it.
 
-## Prerequisites
+## Prerequisites:hand:
 
 Before you config your softwares using `.dotfiles`, you should make sure you have installed that:
 
@@ -34,7 +34,7 @@ and follow the prompts to continue.
 > - apt or apt-get
 > - yum
 > - pacman
-## Using dotfiles
+## Using dotfiles:hand:
 
 Make sure you prepare to config your apps,you just need excute in terminal:
 
