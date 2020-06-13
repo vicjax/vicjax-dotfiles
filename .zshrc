@@ -5,8 +5,41 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# added by Anaconda3 2019.10 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/vicjax/opt/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+ if [ $? -eq 0 ]; then
+     \eval "$__conda_setup"
+ else
+     if [ -f "/Users/vicjax/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+         . "/Users/vicjax/opt/anaconda3/etc/profile.d/conda.sh"
+         CONDA_CHANGEPS1=false conda activate base
+     else
+         \export PATH="/Users/vicjax/opt/anaconda3/bin:$PATH"
+     fi
+ fi
+ unset __conda_setup
+# <<< conda init <<<
+
+# <<< java_home <<<
+export JAVA_HOME=$(/usr/libexec/java_home)
+export PATH=$PATH:$JAVA_HOME/bin
+# <<< java_home <<<
+
+# <<< maven_home <<<
+export MAVEN_HOME=/usr/local/share/maven/apache-maven-3.6.3
+export PATH=$PATH:$MAVEN_HOME/bin
+# <<< maven_home <<<
+#
+#<<< scala home <<<
+export SCALA_HOME=/usr/local/share/scala/scala-2.13.1
+export PATH=$PATH:$SCALA_HOME/bin
+#<<< scala home <<<
+#
 # Path to your oh-my-zsh installation.
-export ZSH="/home/vicjax/.oh-my-zsh"
+export ZSH="/Users/vicjax/.oh-my-zsh"
+
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -80,7 +113,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
+# source $HOME/.bash_profile
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -112,3 +145,4 @@ alias lal='ls -al'
 alias vim='nvim'
 alias vi='nvim'
 alias rg='ranger'
+alias sbs='source ~/.bash_profile'
