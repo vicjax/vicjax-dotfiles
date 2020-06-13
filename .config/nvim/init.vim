@@ -14,11 +14,11 @@
 "-->关闭vi的兼容模式 使用vim的新特性
 set nocompatible
 "-->设置中文不乱码
-"-->windows下激活python模块
-if(has("win32")||has("win64")||has("win16"))
-    let g:python3_host_prog='C:\Users\sword\scoop\shims\python3.exe'
-    let g:python_host_prog='C:\Users\sword\scoop\shims\python.exe'
-endif
+"-->windows下激活python模块(可以忽略此项)
+"if(has("win32")||has("win64")||has("win16"))
+"    let g:python3_host_prog='the\path\to\python3.exe'
+"    let g:python_host_prog='the\path\to\python.exe'
+"endif
 "-->linux下激活python模块 安装pynvim支持后可以不用指定
 "let g:python3_host_prog='/usr/bin/python3'
 "let g:python_host_prog='/usr/bin/python'
@@ -78,7 +78,7 @@ call plug#end()
 call defx#custom#option('_',{
     \ 'winwidth': 30,
     \ 'split': 'vertical',
-    \ 'direction': 'topleft',
+    \ 'direction': 'botright',
     \ 'show_ignored_files': 0,
     \ 'buffer_name': '',
     \ 'toggle': 1,
@@ -87,6 +87,8 @@ call defx#custom#option('_',{
 
 "-->打开文件树
 map <silent><C-e> :Defx<CR>
+"-> 默认情况下自动打开文件树
+autocmd vimenter * Defx
 "-->键盘映射
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
@@ -150,7 +152,7 @@ let g:defx_icons_enable_syntax_highlight = 1
 "=              >>> 显示设置 <<<              =
 "==============================================
 "-->主题颜色
-" colorscheme gruvbox
+colorscheme gruvbox
 "-->设置背景透明
 highlight Normal guibg=NONE ctermbg=None
 highlight NonText guibg=NONE ctermbg=None
@@ -239,7 +241,8 @@ set shiftwidth=4
 set smartindent
 "设置C语言的缩进方式
 "set cindent
-"
+"函数折叠
+set foldmethod=indent
 "
 "
 "
@@ -275,3 +278,20 @@ exec "nohlsearch"
 "
 "
 "
+"==============================================
+"=              >>> ide配置  <<<              =
+"==============================================
+map <F5> :call RunCode()<CR>
+function! RunCode()
+    exec "w"
+    if &filetype == 'python'
+	exec "!python %"
+    endif
+    if &filetype == 'c'
+"	exec "!gcc % -o %<&& ./%<"
+	exec "!gcc % -o %<&& %<"
+    endif
+endfunction
+
+"-->python配置
+"-->c++配置
