@@ -242,7 +242,7 @@ set smartindent
 "设置C语言的缩进方式
 "set cindent
 "函数折叠
-set foldmethod=indent
+"set foldmethod=indent
 "
 "
 "
