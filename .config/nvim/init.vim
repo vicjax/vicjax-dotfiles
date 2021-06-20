@@ -48,7 +48,6 @@ call plug#begin()
 
 "--> 按键映射插件
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'morhetz/gruvbox'
 "--> 主题 
 Plug 'morhetz/gruvbox'
 "--> 文件管理
@@ -152,7 +151,7 @@ let g:defx_icons_enable_syntax_highlight = 1
 "=              >>> 显示设置 <<<              =
 "==============================================
 "-->主题颜色
-colorscheme gruvbox
+"colorscheme gruvbox
 "-->设置背景透明
 highlight Normal guibg=NONE ctermbg=None
 highlight NonText guibg=NONE ctermbg=None
