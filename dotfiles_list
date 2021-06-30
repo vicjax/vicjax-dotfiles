@@ -1,0 +1,7 @@
+.Xresources
+.vimrc 
+.zshrc
+.config/alacritty
+.config/i3
+.config/nvim
+.config/ranger
