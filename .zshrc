@@ -1,7 +1,8 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
-# Use powerline
+# Use powerline 
+# this is using manjaro default zsh configuration
 USE_POWERLINE="true"
 # Source manjaro-zsh-configuration
 if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
@@ -14,25 +15,23 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# added by Anaconda3 2019.10 installer
-# >>> conda init >>>
+# >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/vicjax/opt/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
- if [ $? -eq 0 ]; then
-     \eval "$__conda_setup"
- else
-     if [ -f "/Users/vicjax/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-         . "/Users/vicjax/opt/anaconda3/etc/profile.d/conda.sh"
-         CONDA_CHANGEPS1=false conda activate base
-     else
-         \export PATH="/Users/vicjax/opt/anaconda3/bin:$PATH"
-     fi
- fi
- unset __conda_setup
-# <<< conda init <<<
+__conda_setup="$('/home/buildbear/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/buildbear/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/buildbear/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/buildbear/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
 # <<< java_home <<<
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=/usr/lib/jvm/default
 export PATH=$PATH:$JAVA_HOME/bin
 # <<< java_home <<<
 
@@ -40,12 +39,12 @@ export PATH=$PATH:$JAVA_HOME/bin
 export MAVEN_HOME=/usr/local/share/maven/apache-maven-3.6.3
 export PATH=$PATH:$MAVEN_HOME/bin
 # <<< maven_home <<<
-#
+
 #<<< scala home <<<
 export SCALA_HOME=/usr/local/share/scala/scala-2.13.1
 export PATH=$PATH:$SCALA_HOME/bin
 #<<< scala home <<<
-#
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/buildbear/.oh-my-zsh"
 
@@ -148,6 +147,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias proxyOn='export http_proxy="127.0.0.1:7890" && export https_proxy="127.0.0.1:7890"'
+alias proxyOff='export http_proxy="" && export https_proxy=""'
 alias sf='screenfetch'
 alias cls='clear'
 alias lal='ls -al'

@@ -27,10 +27,12 @@ set termencoding=utf-8
 set encoding=utf-8
 "-->启用鼠标
 set mouse=a
+"-->启用全局剪贴板
+set clipboard+=unnamedplus
 set selection=exclusive
 "set selectmode=mouse.key
 "-->启用粘贴 避免插入模式下粘贴内容时出现缩进变形问题
-"set paste
+set paste
 "-->配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "-->显示命令
@@ -215,6 +217,7 @@ inoremap {<CR> {<CR>}<Esc>O<Tab>
 inoremap (<CR> (<CR>)<Esc>O<Tab>
 inoremap [<CR> {<CR>}<Esc>O<Tab>
 "->系统剪贴板映射
+"->如果启用全局剪切板 则默认y p 会复制一份到 “+ 同下
 map <C-Y> "+y<CR>
 map <C-P> "+p<CR>
 "
