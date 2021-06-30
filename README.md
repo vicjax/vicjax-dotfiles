@@ -22,11 +22,11 @@ Before you config your softwares using `.dotfiles`, you should make sure you hav
 - the necessary tools `curl` or `wget` and `git`;
 - the softwares you want to config like `vim` `neovim` ...
 
-Also you can use the script `.appinstall.sh` to check and install above software you just need execute in terminal:
+Also you can use the script `appcheck.sh` to check and install above software you just need execute in terminal:
 
 ```sh
 cd /the/path/to/vicjax-dotfiles/
-./appinstall.sh
+./appcheck.sh
 ```
 
 and follow the prompts to continue.
@@ -35,10 +35,11 @@ and follow the prompts to continue.
 > - yum
 > - pacman
 ## :hand:Using dotfiles:orange_book:
+> you can select app you want to config by edit file : `apps_want2config`
 
 Make sure you prepare to config your apps,you just need excute in terminal:
 
 ```sh
 cd /the/path/to/vicjax-dotfiles/
-./autoconfig.sh
+./install.sh
 ```
