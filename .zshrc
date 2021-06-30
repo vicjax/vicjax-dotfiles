@@ -151,7 +151,7 @@ alias proxyOn='export http_proxy="127.0.0.1:7890" && export https_proxy="127.0.0
 alias proxyOff='export http_proxy="" && export https_proxy=""'
 alias sf='screenfetch'
 alias cls='clear'
-alias lal='ls -al'
+alias lla='ls -al'
 alias vim='nvim'
 alias vi='nvim'
 alias rg='ranger'
