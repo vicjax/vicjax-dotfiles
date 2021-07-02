@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
-let g:netrw_dirhist_3='/home/buildbear/.config'
-let g:netrw_dirhist_2='/home/buildbear/.local/share'
-let g:netrw_dirhist_1='/usr/share/zsh'
