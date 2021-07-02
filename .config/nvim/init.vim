@@ -63,9 +63,10 @@ endif
 "->defx支持插件
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
-"->co代码提示插件
+"->coc代码提示插件
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+"->fzf模糊搜索
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()
 "
@@ -89,7 +90,7 @@ call defx#custom#option('_',{
 "-->打开文件树
 map <silent><C-e> :Defx<CR>
 "-> 默认情况下自动打开文件树
-autocmd vimenter * Defx
+" autocmd vimenter * Defx
 "-->键盘映射
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
