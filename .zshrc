@@ -162,4 +162,4 @@ alias sbs='source ~/.bash_profile'
 alias go='git open'
 alias rm='trash'
 alias cp='cp  -i'
-
+alias exa='exa -l --icons'

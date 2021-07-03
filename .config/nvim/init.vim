@@ -52,6 +52,11 @@ call plug#begin()
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 "--> 主题 
 Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'wadackel/vim-dogrun'
+Plug 'tomasr/molokai'
+Plug 'sainnhe/sonokai'
+Plug 'rakr/vim-one'
 "--> 文件管理
 if has('nvim')
   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -78,17 +83,17 @@ call plug#end()
 "--> Defx文件管理配置
 "-------------------------------------
 call defx#custom#option('_',{
-    \ 'winwidth': 30,
+    \ 'winwidth': 25,
     \ 'split': 'vertical',
-    \ 'direction': 'botright',
     \ 'show_ignored_files': 0,
     \ 'buffer_name': '',
+    \ 'direction': 'topleft',
     \ 'toggle': 1, 
     \ 'resume': 1
     \})
 
 "-->打开文件树
-map <silent><C-e> :Defx<CR>
+map <silent><C-e> :Defx -columns=icons:indent:filename:type<CR>
 "-> 默认情况下自动打开文件树
 " autocmd vimenter * Defx
 "-->键盘映射
@@ -153,11 +158,39 @@ let g:defx_icons_enable_syntax_highlight = 1
 "==============================================
 "=              >>> 显示设置 <<<              =
 "==============================================
-"-->主题颜色
-"colorscheme gruvbox
 "-->设置背景透明
-highlight Normal guibg=NONE ctermbg=None
-highlight NonText guibg=NONE ctermbg=None
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
+"-->主题颜色
+" Important!!
+if has('termguicolors')
+    set termguicolors
+endif
+
+" The configuration options should be placed before 
+" `colorscheme sonokai`.
+let g:sonokai_style = 'shusia' 
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+"colorscheme sonokai
+
+" `colorscheme ayu`.
+let ayucolor="light"  " for light version of theme
+let ayucolor="dark"   " for dark version of theme
+let ayucolor="mirage" " for mirage version of theme
+"colorscheme ayu
+
+" `colorscheme one`
+let g:airline_theme='one'
+let g:one_allow_italics = 1 " I love italic for comments
+set background=dark        " for the light version
+colorscheme one
+
+"colorscheme molokai
+"colorscheme gruvbox
+"colorscheme dogrun
+
+
+
 "-->显示行号 == set nu
 set number
 "-->高亮当前行 == set cul
