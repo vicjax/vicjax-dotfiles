@@ -13,7 +13,7 @@ Now you can use this to create,copy,restore your configuration quickly and effic
 You need download or clone this repository first:
 
 - using git by `git clone https://github.com/vicjax/vicjax-dotfiles.git`;
-- or download .zip by click https://github.com/vicjax/vicjax-dotfiles/archive/master.zip and unzip it.
+- or download .zip by click [vicjax-dotfile](https://github.com/vicjax/vicjax-dotfiles/archive/master.zip and unzip it.)
 
 ## :hand:Prerequisites:orange_book:
 
@@ -30,11 +30,15 @@ cd /the/path/to/vicjax-dotfiles/
 ```
 
 and follow the prompts to continue.
+
 > Note:speech_balloon:: This script can work if you use one of following package manager:
+>
 > - apt or apt-get
 > - yum
 > - pacman
+
 ## :hand:Using dotfiles:orange_book:
+
 > you can select app you want to config by edit file : `apps_want2config`
 
 Make sure you prepare to config your apps,you just need excute in terminal:

@@ -1,19 +1,27 @@
 #!/bin/bash
 
+# Description:
 # Auto install your apps using script
 
-# Define variable
 
-pkgmgr="pacman -S"
-apps_dependencies=( "git" "curl" "wget" )
-apps_want_to_config=( $(awk '{print $1}' ./apps_want2config) )
+# Color Sytle:
+# For more awesome experience set some color style
+# usually we expect you just use those fields without any change
 Red_font_prefix="\033[31m"
 Green_font_prefix="\033[32m"
 Yello_font_prefix="\033[33m"
+Blue_font_prefix="\033[34m"
 Reset_font_suffix="\033[0m"
 
 
+# Define variable or read files etc.
+pkgmgr="pacman -S"
+apps_dependencies=( "git" "curl" "wget" )
+apps_want_to_config=( $(awk '{print $1}' ./apps_want2config) )
 
+
+# Use features as functions is a better way
+# Define your functions here
 choise_pkgmgr() {
     echo -e "Please choise the way you install packages:\r\n"
     echo -e "(1) yum   (2) apt-get   (3)pacman\r\n"
@@ -54,7 +62,6 @@ check_dependencies() {
 
 }
 
-
 Install_app_want_to_config() {
 
     echo -e "Checking the applications you want to config... \r\n"
@@ -87,6 +94,12 @@ Install_app_want_to_config() {
 
 }
 
+# Main script here
 choise_pkgmgr
 check_dependencies
 Install_app_want_to_config
+
+
+
+
+

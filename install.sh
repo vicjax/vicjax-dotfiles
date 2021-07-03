@@ -1,15 +1,25 @@
 #!/bin/bash
 
+# Description:
 # Auto detect your app and copy configeration for apps your have installed
 
+
+# Color Sytle:
+# For more awesome experience set some color style
+# usually we expect you just use those fields without any change
 Red_font_prefix="\033[31m"
 Green_font_prefix="\033[32m"
 Yello_font_profix="\033[33m"
 Blue_font_prefix="\033[34m"
 Reset_font_suffix="\033[0m"
 
+
+# Define variable or read files etc.
 dotfiles_list=($(awk '{print $1}' ./dotfiles_list))
 
+
+# Use features as functions is a better way
+# Define your functions here
 install_ohmyzsh() {
 	echo -e "${Blue_font_prefix}Install oh-my-zsh... ${Reset_font_suffix}"
 	sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -73,6 +83,8 @@ unsetup_symlinks() {
 	done
 }
 
+# Main script here
+# Main cli menu show some options 
 echo -e "${Blue_font_prefix} Configuring your docfiles... ${Reset_font_suffix}"
 echo
 echo -e "\t${Blue_font_prefix} Seletc an option:${Reset_font_suffix}"
@@ -116,3 +128,8 @@ case $option in
 esac
 
 exit 0
+
+
+
+
+
