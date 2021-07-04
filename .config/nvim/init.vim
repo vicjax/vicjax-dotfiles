@@ -10,6 +10,7 @@
 "==============================================
 "=              >>> 基本设置 <<<              =
 "==============================================
+"Section: Basic
 
 "-->关闭vi的兼容模式 使用vim的新特性
 set nocompatible
@@ -41,17 +42,22 @@ set showcmd
 set wildmenu
 
 
-"
-"
+
+
+
 "==============================================
 "=              >>> 插件管理 <<<              =
 "==============================================
+"Section: Plugin
+
 call plug#begin()
 
 "--> 按键映射插件
 Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 "->coc代码提示插件
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"->snippets 代码片段补全插件
+Plug 'honza/vim-snippets'
 "--> 主题 
 Plug 'morhetz/gruvbox'
 Plug 'ayu-theme/ayu-vim'
@@ -79,7 +85,14 @@ Plug 'kristijanhusak/defx-icons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-"->markdown预览
+"->markdown配置
+"markdown 高亮插件 
+"tabular plugin is used to format tables
+Plug 'godlygeek/tabular'
+"JSON front matter highlight plugin
+Plug 'elzr/vim-json'
+Plug 'plasticboy/vim-markdown'
+"markdown预览插件
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 call plug#end()
@@ -92,6 +105,8 @@ call plug#end()
 "-------------------------------------
 "--> Defx文件管理配置
 "-------------------------------------
+"Section:Plugin.Defx
+
 call defx#custom#option('_',{
     \ 'winwidth': 25,
     \ 'split': 'vertical',
@@ -170,6 +185,9 @@ let g:defx_icons_enable_syntax_highlight = 1
 "-------------------------------------
 "--> coc扩展配置
 "-------------------------------------
+"-> coc本体配置
+"Section: Plugin.coc
+
 " TextEdit might fail if hidden is not set.
 set hidden
 "
@@ -201,7 +219,7 @@ endif
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ <SID>check_back_space () ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -333,16 +351,64 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 
-
-
 "--> prettier 代码格式化插件
+"Section:Plugin.coc.prettier
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 nmap <leader><C-l> <Plug>(coc-format-selected)
+
+"--> snippets 代码片段插件
+"Section:Plugin.coc.snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
+
+"Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
+inoremap <silent><expr> <C-TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<C-TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+"--> 新的coc扩展配置 请复制这两行
+"Section:Plugin.coc.new
+
+
+
+
+
+
+
+"--> 新的coc扩展配置 请复制这两行
+"Section:Plugin.coc.new
+
+
+
 
 
 "-------------------------------------
 "--> 底部状态栏配置
 "-------------------------------------
+"Section:Plugin.airline
 set laststatus=2  "永远显示状态栏
 let g:airline_powerline_fonts = 1  " 支持 powerline 字体
 let g:airline#extensions#tabline#enabled = 1 " 显示窗口tab和buffer
@@ -358,9 +424,38 @@ let g:airline_right_alt_sep = '❮'
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 
+
+
+
+"-------------------------------------
+"--> vim-markdwon 高亮插件
+"-------------------------------------
+"Section:Plugin.vim-markdown
+
+" disable header folding
+let g:vim_markdown_folding_disabled = 1
+
+" do not use conceal feature, the implementation is not so good
+let g:vim_markdown_conceal = 0
+
+" disable math tex conceal feature
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+
+" support front matter of various format
+let g:vim_markdown_frontmatter = 1  " for YAML format
+let g:vim_markdown_toml_frontmatter = 1  " for TOML format
+let g:vim_markdown_json_frontmatter = 1  " for JSON format
+
+
+
+
+
+
 "-------------------------------------
 "--> markdown preview 配置
 "-------------------------------------
+"Section.Plugin.markdown-preview
 " set to 1, nvim will open the preview window after entering the markdown buffer
 " default: 0
 let g:mkdp_auto_start = 0
@@ -455,6 +550,10 @@ let g:mkdp_filetypes = ['markdown']
 
 
 
+"-------------------------------------
+"--> 新的插件复制该部分
+"-------------------------------------
+"Section:Plugin.airline
 
 
 
@@ -465,6 +564,7 @@ let g:mkdp_filetypes = ['markdown']
 "==============================================
 "=              >>> 显示设置 <<<              =
 "==============================================
+"Section:Display
 "-->设置背景透明
 autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
 "-->主题颜色
@@ -473,6 +573,7 @@ if has('termguicolors')
     set termguicolors
 endif
 
+"Section:Display.colorscheme
 " The configuration options should be placed before 
 " `colorscheme sonokai`.
 let g:sonokai_style = 'shusia' 
@@ -525,6 +626,7 @@ set scrolloff=3
 "==============================================
 "=              >>> 按键映射 <<<              =
 "==============================================
+"Section:Keymapping
 "-->设置前缀键 即<Leader>键
 let g:mapleader="\<Space>"
 let g:maplocalleader=','
@@ -559,17 +661,15 @@ nmap <Leader>M %
 "->如果启用全局剪切板 则默认y p 会复制一份到 “+ 同下
 "map <C-Y> "+y<CR>
 "map <C-P> "+p<CR>
-"
-"
-"
-"
-"
-"
-"
-"
+
+
+
+
+
 "==============================================
 "=              >>> 格式设置 <<<              =
 "==============================================
+"Section:Format
 "-->设置智能tab
 set smarttab
 "-->设置tab长度
@@ -584,12 +684,17 @@ set smartindent
 "set cindent
 "函数折叠
 "set foldmethod=indent
+"设置隐藏级别
+"markdown中斜体 粗体等标记符号隐藏 0：不隐藏 1: 空格代替标识符 2:
+"隐藏标识符
+"set conceallevel=2
 "
 "
 "
 "==============================================
 "=              >>> 文件相关 <<<              =
 "==============================================
+"Section:File 
 "-->打开文件类型检测
 "filetype on
 "-->根据文件类型加载插件
@@ -605,6 +710,7 @@ filetype plugin indent on
 "==============================================
 "=              >>> 搜索相关 <<<              =
 "==============================================
+"SectionL:Search
 "-->开启实时搜索
 set incsearch
 "-->忽略大小写
@@ -622,6 +728,7 @@ exec "nohlsearch"
 "==============================================
 "=              >>> ide配置  <<<              =
 "==============================================
+"Section:IDE
 map <F5> :call RunCode()<CR>
 function! RunCode()
     exec "w"

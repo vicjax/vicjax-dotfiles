@@ -1,4 +1,4 @@
-# :rose::rose::rose:vicjax.dotfile :smile::smile::smile:
+# :rose::rose::rose:vicjax.dotfile :smile::smile::smile: #
 
 This is a dotfile which config your terminal.
 
