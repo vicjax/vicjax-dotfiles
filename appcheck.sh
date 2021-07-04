@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Description:
-# Auto install your apps using script
+# 
 
 
 # Color Sytle:
 # For more awesome experience set some color style
-# usually we expect you just use those fields without any change
+# Usually, we expect you just use those fields without any change
 Red_font_prefix="\033[31m"
 Green_font_prefix="\033[32m"
 Yello_font_prefix="\033[33m"

@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Description:
-# Auto detect your app and copy configeration for apps your have installed
+# Auto-detect your app and copy configuration for apps you have installed
 
 
 # Color Sytle:
-# For more awesome experience set some color style
-# usually we expect you just use those fields without any change
+# For a more awesome experience set some color style 
+# Usually, we expect you just use those fields without any change
 Red_font_prefix="\033[31m"
 Green_font_prefix="\033[32m"
 Yello_font_profix="\033[33m"
