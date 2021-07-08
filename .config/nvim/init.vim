@@ -94,6 +94,8 @@ Plug 'elzr/vim-json'
 Plug 'plasticboy/vim-markdown'
 "markdown预览插件
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+"Nerdcommenter代码注释插件
+Plug 'preservim/nerdcommenter'
 
 call plug#end()
 
@@ -551,6 +553,42 @@ let g:mkdp_filetypes = ['markdown']
 
 
 "-------------------------------------
+"--> Nerdcommenter代码注释插件
+"-------------------------------------
+"Section:Plugin.nerdcommenter
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
+
+
+
+
+
+
+"-------------------------------------
 "--> 新的插件复制该部分
 "-------------------------------------
 "Section:Plugin.airline
@@ -634,7 +672,7 @@ nnoremap <silent> <Leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>Whichkey ','<CR>
 
 "->保存和退出
-nmap <Leader>q :q<CR>
+nmap <Leader>qq :q<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>W :wa<CR>
 nmap <Leader><C-S> :wq<CR>

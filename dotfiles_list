@@ -1,6 +1,7 @@
 .Xresources
 .vimrc 
 .zshrc
+.config/conky
 .config/alacritty
 .config/i3
 .config/nvim
