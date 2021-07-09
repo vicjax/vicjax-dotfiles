@@ -1,0 +1,21 @@
+[Desktop Entry]
+Categories=Network
+Comment[zh_CN]=A rule-based tunnel in Go
+Comment=A rule-based tunnel in Go
+Exec=/usr/bin/clash
+GenericName[zh_CN]=
+GenericName=
+Icon=/home/buildbear/.config/clash/clash-light.png
+MimeType=
+Name[zh_CN]=Clash
+Name=Clash
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+Version=0.20.0
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
