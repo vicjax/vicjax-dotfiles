@@ -3,9 +3,8 @@
 # Description:
 # Auto-detect your app and copy configuration for apps you have installed
 
-
 # Color Sytle:
-# For a more awesome experience set some color style 
+# For a more awesome experience set some color style
 # Usually, we expect you just use those fields without any change
 Red_font_prefix="\033[31m"
 Green_font_prefix="\033[32m"
@@ -13,10 +12,8 @@ Yello_font_profix="\033[33m"
 Blue_font_prefix="\033[34m"
 Reset_font_suffix="\033[0m"
 
-
 # Define variable or read files etc.
 dotfiles_list=($(awk '{print $1}' ./dotfiles_list))
-
 
 # Use features as functions is a better way
 # Define your functions here
@@ -46,12 +43,15 @@ setup_symlinks() {
 
 	# Begin setup symlinks
 	for dotfile in ${dotfiles_list[*]}; do
-		echo -e "\t${Yello_font_profix} Backup existing files ~/${dotfile} to ~/${dotfile}.bkp.. ${Reset_font_suffix}"
-		mv -iv "$HOME/${dotfile}" "$HOME/${dotfile}.bkp" >/dev/null 2>&1
-		if [[ -e $HOME/${dotfile}.bkp ]]; then
-			echo -e "\t${Yello_font_profix} Backup successful, creating symlink...${Reset_font_suffix}"
-			ln -sfnv "$PWD/${dotfile}" "$HOME/${dotfile}" >/dev/null 2>&1
-			echo -e "$\t${Green_font_prefix} Add symlinks of $HOME/${dotfile} successful ${Reset_font_suffix}\r\n"
+		if [[ -e $HOME/${dotfile} ]]; then
+			echo -e "\t${Yello_font_profix} Backup existing files ~/${dotfile} to ~/${dotfile}.bkp.. ${Reset_font_suffix}"
+			mv -iv "$HOME/${dotfile}" "$HOME/${dotfile}.bkp" >/dev/null 2>&1
+
+			if [[ -e $HOME/${dotfile}.bkp ]]; then
+				echo -e "\t${Yello_font_profix} Backup successful, creating symlink...${Reset_font_suffix}"
+				ln -sfnv "$PWD/${dotfile}" "$HOME/${dotfile}" >/dev/null 2>&1
+				echo -e "$\t${Green_font_prefix} Add symlinks of $HOME/${dotfile} successful ${Reset_font_suffix}\r\n"
+			fi
 		else
 			echo -e "\t${Red_font_prefix} There is no dotfile: $HOME/${dotfile} ${Reset_font_suffix}"
 			read -p "         Do you want to continue create symlinks(y/n):" -r confirm
@@ -71,28 +71,28 @@ setup_symlinks() {
 unsetup_symlinks() {
 	echo -e "\r\n${Blue_font_prefix} Unetup symlinks... ${Reset_font_suffix}\r\n"
 	for config in ${dotfiles_list[*]}; do
-	    
-	    echo -e "\t${Blue_font_prefix} Delete symlink $HOME/${config} ...${Reset_font_suffix}"
-	    
-	    if [[ -L $HOME/${config} ]]; then
-		rm $HOME/${config}
-		echo -e "\t\t${Blue_font_prefix} Delete $HOME/${config} successful !!!${Reset_font_suffix}"
-	    else
-		echo -e "\t${Blue_font_prefix} There is no symlink of  $HOME/${config}.${Reset_font_suffix}"
-	    fi
 
-	    echo -e "\t${Blue_font_prefix} Restore backup files of $HOME/${config}... ${Reset_font_suffix}"
-	    if [[ -e "$HOME/${config}.bkp" ]];then
-		mv -iv "$HOME/${config}.bkp" "$HOME/${config}" >/dev/null 2>&1
-		echo -e "\t${Yello_font_profix}Restore successful${Reset_font_suffix}"
-	    else
-		echo -e "\t${Yello_font_profix}There is no backup files!!!${Reset_font_suffix}"
-	    fi
+		echo -e "\t${Blue_font_prefix} Delete symlink $HOME/${config} ...${Reset_font_suffix}"
+
+		if [[ -L $HOME/${config} ]]; then
+			rm "$HOME/${config}"
+			echo -e "\t\t${Blue_font_prefix} Delete $HOME/${config} successful !!!${Reset_font_suffix}"
+		else
+			echo -e "\t\t${Yello_font_profix} There is no symlink of  $HOME/${config} !!!${Reset_font_suffix}"
+		fi
+
+		echo -e "\t${Blue_font_prefix} Restore backup files of $HOME/${config}... ${Reset_font_suffix}"
+		if [[ -e "$HOME/${config}.bkp" ]]; then
+			mv -iv "$HOME/${config}.bkp" "$HOME/${config}" >/dev/null 2>&1
+			echo -e "\t\t${Yello_font_profix} Restore successful${Reset_font_suffix}"
+		else
+			echo -e "\t\t${Yello_font_profix} There is no backup files!!!${Reset_font_suffix}"
+		fi
 	done
 }
 
 # Main script here
-# Main cli menu show some options 
+# Main cli menu show some options
 echo -e "${Blue_font_prefix} Configuring your docfiles... ${Reset_font_suffix}"
 echo
 echo -e "\t${Blue_font_prefix} Seletc an option:${Reset_font_suffix}"
@@ -136,8 +136,3 @@ case $option in
 esac
 
 exit 0
-
-
-
-
-
