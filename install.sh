@@ -48,7 +48,7 @@ setup_symlinks() {
 	for dotfile in ${dotfiles_list[*]}; do
 		echo -e "\t${Yello_font_profix} Backup existing files ~/${dotfile} to ~/${dotfile}.bkp.. ${Reset_font_suffix}"
 		mv -iv "$HOME/${dotfile}" "$HOME/${dotfile}.bkp" >/dev/null 2>&1
-		if [[ $? -eq 0 ]]; then
+		if [[ -e $HOME/${dotfile}.bkp ]]; then
 			echo -e "\t${Yello_font_profix} Backup successful, creating symlink...${Reset_font_suffix}"
 			ln -sfnv "$PWD/${dotfile}" "$HOME/${dotfile}" >/dev/null 2>&1
 			echo -e "$\t${Green_font_prefix} Add symlinks of $HOME/${dotfile} successful ${Reset_font_suffix}\r\n"
@@ -71,15 +71,23 @@ setup_symlinks() {
 unsetup_symlinks() {
 	echo -e "\r\n${Blue_font_prefix} Unetup symlinks... ${Reset_font_suffix}\r\n"
 	for config in ${dotfiles_list[*]}; do
-		echo -e "\t${Blue_font_prefix} Detecting files $HOME/${config} to $HOME/${config}.bkp.. ${Reset_font_suffix}"
-		mv -iv "$HOME/${config}.bkp" "$HOME/${config}.bkp.bkp" >/dev/null 2>&1
-		if [[ $? -eq 0 ]]; then
-			mv -iv "$HOME/${config}.bkp.bkp" "$HOME/${config}" >/dev/null 2>&1
-			echo -e "\t\t${Green_font_prefix} Unsetup symlinks of ~/${config} successful ${Reset_font_suffix}\r\n"
-		else
-			echo -e "\t\t${Yello_font_profix} $HOME/${config} has not backup ${Reset_font_suffix}\r\n"
-		fi
+	    
+	    echo -e "\t${Blue_font_prefix} Delete symlink $HOME/${config} ...${Reset_font_suffix}"
+	    
+	    if [[ -L $HOME/${config} ]]; then
+		rm $HOME/${config}
+		echo -e "\t\t${Blue_font_prefix} Delete $HOME/${config} successful !!!${Reset_font_suffix}"
+	    else
+		echo -e "\t${Blue_font_prefix} There is no symlink of  $HOME/${config}.${Reset_font_suffix}"
+	    fi
 
+	    echo -e "\t${Blue_font_prefix} Restore backup files of $HOME/${config}... ${Reset_font_suffix}"
+	    if [[ -e "$HOME/${config}.bkp" ]];then
+		mv -iv "$HOME/${config}.bkp" "$HOME/${config}" >/dev/null 2>&1
+		echo -e "\t${Yello_font_profix}Restore successful${Reset_font_suffix}"
+	    else
+		echo -e "\t${Yello_font_profix}There is no backup files!!!${Reset_font_suffix}"
+	    fi
 	done
 }
 

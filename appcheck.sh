@@ -68,9 +68,9 @@ Install_app_want_to_config() {
     echo -e "${Red_font_prefix}Note:You only need to install the apps you want to configure!${Reset_font_suffix}\r\n"
     for appname in ${apps_want_to_config[*]}
     do
-        if [[ $appname = $(awk -F@ '{print $1}' ./apps_need_fix) ]]
+        if [[ $(sed -n "/${appname}/p" ./apps_need_fix) ]]
             then 
-            command=$(awk -F@ '{print $2}' ./apps_need_fix)
+            command=$(sed -n "/${appname}/p" ./apps_need_fix | awk -F@ '{print $2}')
             else
             command=$appname
         fi

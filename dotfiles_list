@@ -6,3 +6,5 @@
 .config/i3
 .config/nvim
 .config/ranger
+.config/aria2
+.config/clash
