@@ -240,7 +240,7 @@ endif
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -725,7 +725,7 @@ set smartindent
 "设置隐藏级别
 "markdown中斜体 粗体等标记符号隐藏 0：不隐藏 1: 空格代替标识符 2:
 "隐藏标识符
-"set conceallevel=2
+set conceallevel=0
 "
 "
 "
