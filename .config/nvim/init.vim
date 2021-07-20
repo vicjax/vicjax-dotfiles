@@ -60,11 +60,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 "--> 主题 
 Plug 'morhetz/gruvbox'
-Plug 'ayu-theme/ayu-vim'
-Plug 'wadackel/vim-dogrun'
 Plug 'tomasr/molokai'
-Plug 'sainnhe/sonokai'
-Plug 'rakr/vim-one'
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
+Plug 'dracula/vim', { 'as': 'dracula' } 
 "--> 括号自动补全
 "Plug 'jiangmiao/auto-pairs'
 "--> 底部状态栏
@@ -94,7 +92,8 @@ Plug 'elzr/vim-json'
 Plug 'plasticboy/vim-markdown'
 "markdown预览插件
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-"Nerdcommenter代码注释插件
+
+"->Nerdcommenter代码注释插件
 Plug 'preservim/nerdcommenter'
 
 call plug#end()
@@ -414,7 +413,7 @@ let g:coc_snippet_next = '<tab>'
 " set laststatus=2  "永远显示状态栏
 let g:airline_powerline_fonts = 1  " 支持 powerline 字体
 let g:airline#extensions#tabline#enabled = 1 " 显示窗口tab和buffer
-let g:airline_theme='simple'
+" let g:airline_theme='simple'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -613,28 +612,7 @@ endif
 
 "Section:Display.colorscheme
 " The configuration options should be placed before 
-" `colorscheme sonokai`.
-let g:sonokai_style = 'shusia' 
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-"colorscheme sonokai
-
-" `colorscheme ayu`.
-let ayucolor="light"  " for light version of theme
-let ayucolor="dark"   " for dark version of theme
-let ayucolor="mirage" " for mirage version of theme
-"colorscheme ayu
-
-" `colorscheme one`
-let g:airline_theme='one'
-let g:one_allow_italics = 1 " I love italic for comments
-set background=dark        " for the light version
-colorscheme one
-
-"colorscheme molokai
-"colorscheme gruvbox
-"colorscheme dogrun
-
+colorscheme gruvbox
 
 
 "-->显示行号 == set nu
