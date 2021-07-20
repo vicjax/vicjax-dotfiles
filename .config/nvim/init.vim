@@ -411,10 +411,10 @@ let g:coc_snippet_next = '<tab>'
 "--> 底部状态栏配置
 "-------------------------------------
 "Section:Plugin.airline
-set laststatus=2  "永远显示状态栏
+" set laststatus=2  "永远显示状态栏
 let g:airline_powerline_fonts = 1  " 支持 powerline 字体
 let g:airline#extensions#tabline#enabled = 1 " 显示窗口tab和buffer
-let g:airline_theme='moloai'  " murmur配色不错
+let g:airline_theme='simple'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
