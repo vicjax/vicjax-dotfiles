@@ -1,5 +1,5 @@
 .vscode
-.config/aria2/aria2.conf/dht*
+.config/aria2/aria2.conf/*.dat
 .config/ranger/__pycache__
 .config/ranger/plugins/__init__.py
 .config/ranger/plugins/__pycache__
