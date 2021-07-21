@@ -7,3 +7,7 @@
 .config/nvim/plugged
 .config/nvim/.netrwhist
 .config/clash/.cache
+.config/mpv/watch_later/
+.config/mpv/vs-plugins/
+.config/mpv/icc-cache/
+.config/mpv/mpv-livetweet.lua
