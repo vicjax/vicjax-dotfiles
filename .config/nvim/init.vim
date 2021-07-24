@@ -667,8 +667,9 @@ nmap <Leader><up> <C-W>-
 nmap <Leader><down> <C-W>+
 "->符号匹配设置
 nmap <Leader>M %
-"
 "--> 输入设置
+
+
 "->括号输入格式
 "inoremap {<CR> {<CR>}<Esc>O<Tab>
 "inoremap (<CR> (<CR>)<Esc>O<Tab>
