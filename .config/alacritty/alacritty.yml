@@ -10,6 +10,8 @@
 # to the user's home directory starting with `~/`.
 import:
   - ~/.config/alacritty/dracula.yml
+  - ~/AppData/Roaming/alacritty/dracula.yml
+  - ~/AppData/Roaming/alacritty/default_sh.yml
 #  - /path/to/alacritty.yml
 
 # Any items in the `env` entry below will be added as
@@ -151,7 +153,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 11.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter
