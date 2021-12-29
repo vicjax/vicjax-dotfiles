@@ -6,7 +6,8 @@
 .config/nvim/plugins
 .config/nvim/plugged
 .config/nvim/.netrwhist
-.config/clash/.cache*
+.config/clash/.cache
+.config/clash/cache.db
 .config/mpv/watch_later/
 .config/mpv/vs-plugins/
 .config/mpv/icc-cache/
